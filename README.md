@@ -1,0 +1,2 @@
+# dontspell
+https://dontspell.com/
