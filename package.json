@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/sbarrack/dontspell/issues"
   },
-  "homepage": "https://github.com/sbarrack/dontspell#readme"
+  "homepage": "https://github.com/sbarrack/dontspell#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
