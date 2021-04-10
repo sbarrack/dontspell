@@ -1,0 +1,18 @@
+{
+  "name": "dontspell",
+  "version": "1.0.0",
+  "description": "dontspell.net",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbarrack/dontspell.git"
+  },
+  "author": "sbarrack",
+  "bugs": {
+    "url": "https://github.com/sbarrack/dontspell/issues"
+  },
+  "homepage": "https://github.com/sbarrack/dontspell#readme"
+}

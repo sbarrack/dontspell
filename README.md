@@ -1,2 +1,2 @@
 # dontspell
-https://dontspell.com/
+https://dontspell.net/
