@@ -21,29 +21,16 @@
   </q-item>
 </template>
 
-<script>
-export default {
-  name: 'EssentialLink',
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
+<script lang="ts">
+import { Vue, prop, Options } from 'vue-class-component';
 
-    caption: {
-      type: String,
-      default: ''
-    },
-
-    link: {
-      type: String,
-      default: '#'
-    },
-
-    icon: {
-      type: String,
-      default: ''
-    }
-  }
+class Props {
+  readonly title!: string;
+  readonly caption = prop({ default: '' });
+  readonly link = prop({ default: '#' });
+  readonly icon = prop({ default: '' });
 }
+
+@Options({})
+export default class EssentialLink extends Vue.with(Props) {}
 </script>
