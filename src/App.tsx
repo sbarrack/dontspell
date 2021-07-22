@@ -41,7 +41,7 @@ const App: FC = () => (
               <Item label="7-21-21" color="red" dot={<EnvironmentOutlined style={{ fontSize: '24px' }} />}>
                 Start building
               </Item>
-              <Item label="TBD" color="lightGray">Launch the site?</Item>
+              <Item label="TBD" color="lightGray">Launch the site</Item>
             </Timeline>
           </Col>
         </Row>
