@@ -1,13 +1,4 @@
-// /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-// @import "../color/colors";
-
 // @theme: default;
-
-// // The prefix to use on all css classes from ant.
-// @ant-prefix: ant;
-
-// // An override for the html selector for theme prefixes
-// @html-selector: html;
 
 // // -------- Colors -----------
 // @primary-color: @blue-6;
@@ -46,9 +37,9 @@
 // // ---
 
 // // Background color for `<body>`
-// @body-background: #fff;
+@body-background: #1d1d1d;
 // // Base background color for most components
-// @component-background: #fff;
+@component-background: #262626;
 // // Popover background color
 // @popover-background: @component-background;
 // @popover-customize-border-color: @border-color-split;
@@ -57,14 +48,12 @@
 //     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 // @code-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
 //     monospace;
-// @text-color: fade(@black, 85%);
+@text-color: #d8d8d8;
 // @text-color-secondary: fade(@black, 45%);
 // @text-color-inverse: @white;
 // @icon-color: inherit;
 // @icon-color-hover: fade(@black, 75%);
-// @heading-color: fade(@black, 85%);
-// @text-color-dark: fade(@white, 85%);
-// @text-color-secondary-dark: fade(@white, 65%);
+@heading-color: @text-color;
 // @text-selection-bg: @primary-color;
 // @font-variant-base: tabular-nums;
 // @font-feature-settings-base: "tnum";
@@ -324,13 +313,13 @@
 // @grid-columns: 24;
 
 // // Layout
-// @layout-body-background: #f0f2f5;
+@layout-body-background: @component-background;
 // @layout-header-background: #001529;
 // @layout-header-height: 64px;
 // @layout-header-padding: 0 50px;
 // @layout-header-color: @text-color;
 // @layout-footer-padding: 24px 50px;
-// @layout-footer-background: @layout-body-background;
+@layout-footer-background: @body-background;
 // @layout-sider-background: @layout-header-background;
 // @layout-trigger-height: 48px;
 // @layout-trigger-background: #002140;
@@ -988,10 +977,10 @@
 // // Timeline
 // // ---
 // @timeline-width: 2px;
-// @timeline-color: @border-color-split;
+@timeline-color: #444;
 // @timeline-dot-border-width: 2px;
 // @timeline-dot-color: @primary-color;
-// @timeline-dot-bg: @component-background;
+@timeline-dot-bg: @component-background;
 // @timeline-item-padding-bottom: 20px;
 
 // // Typography
