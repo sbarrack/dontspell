@@ -12,7 +12,7 @@ const App: FC = () => {
       <Layout className="text-center">
         <Content>
           <Row>
-            <Col span={20} offset={2}>
+            <Col xs={{ span: 20, offset: 2, }}>
               <Title>
                 <br />Welcome to <a href="/">DontSpell.net</a>!
               </Title>
@@ -24,7 +24,7 @@ const App: FC = () => {
             </Col>
           </Row>
           <Row>
-            <Col span={16} offset={4}>
+            <Col xs={{ span: 20, offset: 2, }} lg={{ span: 16, offset: 4, }} xl={{ span: 8, offset: 8, }}>
               <Title level={3}>
                 The vision
               </Title>
@@ -41,7 +41,7 @@ const App: FC = () => {
             </Col>
           </Row>
           <Row>
-            <Col span={8} offset={8}>
+            <Col xs={{ span: 20, offset: 2, }} lg={{ span: 8, offset: 8, }}  xl={{ span: 6, offset: 9, }}>
               <Title level={5}>
                 Alpha dev progress
               </Title>
@@ -76,7 +76,7 @@ const App: FC = () => {
         </Content>
         <Footer>
           <Row>
-            <Col span={20} offset={2}>
+            <Col xs={{ span: 20, offset: 2, }}>
               <Space size="middle">
                 <a href="https://github.com/sbarrack/dontspell" target="_blank" rel="noreferrer">
                   <GithubOutlined style={{ fontSize: '36px' }} />
@@ -86,7 +86,7 @@ const App: FC = () => {
             </Col>
           </Row>
           <Row>
-            <Col span={20} offset={2}>
+            <Col xs={{ span: 20, offset: 2, }}>
               <Space size="middle">
                 <a href="/terms">Terms of Service</a>
                 <a href="/privacy">Privacy Policy</a>
