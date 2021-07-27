@@ -2,6 +2,7 @@ import './App.less';
 import React from 'react';
 import { Col, Layout, Modal, Progress, Row, Space, Timeline, Typography } from 'antd';
 import { CheckCircleOutlined, EnvironmentOutlined, GithubOutlined, LoadingOutlined } from '@ant-design/icons';
+import Scoreboard from './components/Scoreboard';
 const { Content, Footer } = Layout;
 const { Paragraph, Title } = Typography;
 const { Item } = Timeline;
@@ -364,7 +365,7 @@ class App extends React.Component<{}, { isModalVisible: boolean, whichModalConte
                 <Title level={5}>
                   Current progress
                 </Title>
-                <Progress percent={15} status="active" />
+                <Progress percent={20} status="active" />
                 <br />&nbsp;
                 <br />&nbsp;
                 <Timeline mode={'right'} reverse={true}>
@@ -377,19 +378,29 @@ class App extends React.Component<{}, { isModalVisible: boolean, whichModalConte
                   <Item label="5-8-21" color="green" dot={<CheckCircleOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(75)}>
                     Start coding
                   </Item>
-                  <Item label="7-22-21" color="red" dot={<EnvironmentOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(44)}>
+                  <Item label="7-22-21" color="irresistible" dot={<EnvironmentOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(44)}>
                     Initial deployment
                   </Item>
                   <Item dot={<LoadingOutlined style={{ fontSize: '16px' }} spin />} style={this.scaleTime(44)}>
                     Alpha dev
                   </Item>
-                  <Item label="TBD" color="white">
+                  <Item label="TBD" color="candy">
                     Launch
                   </Item>
-                  <Item color="white">
+                  <Item color="candy">
                     Beta funding campaign
                   </Item>
                 </Timeline>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={{ span: 20, offset: 2, }}>
+                <Title level={3}>
+                  The demo
+                  <br />&nbsp;
+                </Title>
+                <Scoreboard></Scoreboard>
+                <br />&nbsp;
               </Col>
             </Row>
           </Content>
