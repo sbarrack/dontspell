@@ -3,6 +3,7 @@ import React from 'react';
 import { Col, Layout, Menu, Modal, Progress, Row, Space, Timeline, Typography } from 'antd';
 import { CheckCircleOutlined, EnvironmentOutlined, GithubOutlined, LoadingOutlined } from '@ant-design/icons';
 import Scoreboard from './components/Scoreboard';
+import Logo from './components/Logo';
 const { Content, Header, Footer } = Layout;
 const { Paragraph, Title } = Typography;
 const { Item } = Timeline;
@@ -354,7 +355,9 @@ class App extends React.Component<{}, { isModalVisible: boolean, whichModalConte
         <Layout style={{ userSelect: 'none', }}>
           <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
             <Menu mode="horizontal">
-              <Menu.Item key="home"><a href="#home">Home</a></Menu.Item>
+              <Menu.Item key="home"><a href="#home">
+                <Logo height={24} />
+              </a></Menu.Item>
               <Menu.Item key="vision"><a href="#vision">Vision</a></Menu.Item>
               <Menu.Item key="demo"><a href="#demo">Demo</a></Menu.Item>
               <Menu.Item key="credits"><a href="#credits">Credits</a></Menu.Item>
@@ -370,8 +373,10 @@ class App extends React.Component<{}, { isModalVisible: boolean, whichModalConte
                       <br />Welcome to <a href="/">DontSpell.net</a>!
                     </Title>
 
+                    <Logo height={128}/>
+
                     <Title level={4}>
-                      The online community for popular internet games
+                    <br />The online community for popular internet games
                     </Title>
                   </Col>
                 </Row>
