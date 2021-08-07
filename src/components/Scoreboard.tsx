@@ -7,32 +7,32 @@ const headers = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (name:any) => <>
-        {name.tag}{name.badges.length > 0 &&
-          <>
-            &nbsp;&nbsp;{
-              name.badges.map((badge:any) => {
-                if (badge.color) {
-                  return <Tag color={badge.color}>{badge.label}</Tag>;
-                } else {
-                  return <Tag color="gray">{badge.label}</Tag>;
-                }
-              })
-            }
-          </>
-        }
-      </>,
+    render: (name: any) => <>
+      {name.tag}{name.badges.length > 0 &&
+        <>
+          &nbsp;&nbsp;{
+            name.badges.map((badge: any) => {
+              if (badge.color) {
+                return <Tag color={badge.color}>{badge.label}</Tag>;
+              } else {
+                return <Tag color="gray">{badge.label}</Tag>;
+              }
+            })
+          }
+        </>
+      }
+    </>,
   },
   {
     title: 'Score',
     dataIndex: 'score',
     key: 'score',
-    render: (score:any) => <>
+    render: (score: any) => <>
       {score.value}{score.isReviewed ?
-      <>{!score.isValid &&
-        <>&nbsp;&nbsp;<Tag color="red">INVALID</Tag></>
-      }</> :
-      <>&nbsp;&nbsp;<Tag color="gray">IN REVIEW</Tag></>
+        <>{!score.isValid &&
+          <>&nbsp;&nbsp;<Tag color="red">INVALID</Tag></>
+        }</> :
+        <>&nbsp;&nbsp;<Tag color="gray">IN REVIEW</Tag></>
       }
     </>,
   },
@@ -40,7 +40,7 @@ const headers = [
     title: 'Date',
     dataIndex: 'date',
     key: 'date',
-    render: (date:any) => <>
+    render: (date: any) => <>
       {date.toLocaleDateString()}
     </>,
   },
@@ -102,7 +102,7 @@ const data = [
 
 class Scoreboard extends React.Component {
   render() {
-    return (<Table columns={headers} dataSource={data} />);
+    return (<Table columns={headers} dataSource={data} pagination={false} />);
   }
 }
 

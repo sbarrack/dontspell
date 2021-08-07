@@ -3,6 +3,11 @@
 
 @import "theme.less";
 
+.ant-layout-content > .ant-row > .ant-col {
+    max-width: 1024px;
+    margin: auto;
+}
+
 .ant-timeline.ant-timeline-label
     .ant-timeline-item-right
     .ant-timeline-item-label {
@@ -18,4 +23,10 @@
     .ant-timeline-item-right
     .ant-timeline-item-content {
     width: calc(50% - 20px);
+}
+
+@media (min-width: 1025px) {
+    .ant-menu {
+        padding: 0 calc(50vw - 1024px / 2);
+    }
 }

@@ -1,9 +1,9 @@
 import './App.less';
 import React from 'react';
-import { Col, Layout, Modal, Progress, Row, Space, Timeline, Typography } from 'antd';
+import { Col, Layout, Menu, Modal, Progress, Row, Space, Timeline, Typography } from 'antd';
 import { CheckCircleOutlined, EnvironmentOutlined, GithubOutlined, LoadingOutlined } from '@ant-design/icons';
 import Scoreboard from './components/Scoreboard';
-const { Content, Footer } = Layout;
+const { Content, Header, Footer } = Layout;
 const { Paragraph, Title } = Typography;
 const { Item } = Timeline;
 
@@ -270,7 +270,6 @@ const modalContent: any = {
   </>,
 };
 
-
 class App extends React.Component<{}, { isModalVisible: boolean, whichModalContent: string, }> {
   constructor(props: any) {
     super(props);
@@ -284,6 +283,9 @@ class App extends React.Component<{}, { isModalVisible: boolean, whichModalConte
     document.querySelectorAll('[href^="/"]').forEach(link => {
       link.addEventListener('click', this.showModal);
     });
+    document.querySelectorAll('[href^="#"]').forEach(link => {
+      link.addEventListener('click', this.doScroll);
+    });
   }
 
   componentDidUpdate() {
@@ -291,13 +293,33 @@ class App extends React.Component<{}, { isModalVisible: boolean, whichModalConte
       link.removeEventListener('click', this.showModal);
       link.addEventListener('click', this.showModal);
     });
+    document.querySelectorAll('[href^="#"]').forEach(link => {
+      link.removeEventListener('click', this.doScroll);
+      link.addEventListener('click', this.doScroll);
+    });
   }
 
   componentWillUnmount() {
     document.querySelectorAll('[href^="/"]').forEach(link => {
       link.removeEventListener('click', this.showModal);
     });
+    document.querySelectorAll('[href^="#"]').forEach(link => {
+      link.removeEventListener('click', this.doScroll);
+    });
   }
+
+  doScroll = (e: any) => {
+    const target = document.querySelector(`${e.target.attributes.getNamedItem('href').value}`);
+
+    e.preventDefault();
+    if (target) {
+      window.scrollTo({
+        top: window.scrollY + target.getBoundingClientRect().y - 64,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   showModal = (e: any) => {
     const target = e.target.attributes.getNamedItem('href').value.slice(1);
@@ -329,110 +351,142 @@ class App extends React.Component<{}, { isModalVisible: boolean, whichModalConte
   render() {
     return (
       <>
-        <Layout className="text-center">
-          <Content>
+        <Layout style={{ userSelect: 'none', }}>
+          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+            <Menu mode="horizontal">
+              <Menu.Item key="home"><a href="#home">Home</a></Menu.Item>
+              <Menu.Item key="vision"><a href="#vision">Vision</a></Menu.Item>
+              <Menu.Item key="demo"><a href="#demo">Demo</a></Menu.Item>
+              <Menu.Item key="credits"><a href="#credits">Credits</a></Menu.Item>
+            </Menu>
+          </Header>
+
+          <Content style={{ marginTop: 64, }}>
             <Row>
               <Col xs={{ span: 20, offset: 2, }}>
-                <Title>
-                  <br />Welcome to <a href="/">DontSpell.net</a>!
-                </Title>
-                <Title level={4}>
-                  The online community for popular internet games
-                  <br /><small><i>Coming soon&trade;</i></small>
-                  <br />&nbsp;
-                </Title>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={{ span: 20, offset: 2, }} lg={{ span: 16, offset: 4, }} xl={{ span: 8, offset: 8, }}>
-                <Title level={3}>
-                  The vision
-                </Title>
-                <Paragraph>
-                  This project aims to centralize all efforts to collaborate
-                  and compete on popular online games, primarily <a href="https://skribbl.io/" target="_blank" rel="noreferrer">skribbl.io</a>.
-                  Widely, things such as high scores, gorgeous drawings, exceptional
-                  use of word play, and hilarious gamer moments go unnoticed outside
-                  of their individual spheres of influence. DontSpell.net solves
-                  that problem by providing you a place to share those with your friends,
-                  the people around you, and the world.
-                  <br />&nbsp;
-                </Paragraph>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={{ span: 20, offset: 2, }} lg={{ span: 10, offset: 7, }} xl={{ span: 6, offset: 9, }}>
-                <Title level={5}>
-                  Current progress
-                </Title>
-                <Progress percent={20} status="active" />
-                <br />&nbsp;
-                <br />&nbsp;
-                <Timeline mode={'right'} reverse={true}>
-                  <Item label="3-12-21" color="green" dot={<CheckCircleOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(28)}>
-                    Brainstorm
-                  </Item>
-                  <Item label="4-9-21" color="green" dot={<CheckCircleOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(29)}>
-                    Reserve domain
-                  </Item>
-                  <Item label="5-8-21" color="green" dot={<CheckCircleOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(75)}>
-                    Start coding
-                  </Item>
-                  <Item label="7-22-21" color="irresistible" dot={<EnvironmentOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(44)}>
-                    Initial deployment
-                  </Item>
-                  <Item dot={<LoadingOutlined style={{ fontSize: '16px' }} spin />} style={this.scaleTime(44)}>
-                    Alpha dev
-                  </Item>
-                  <Item label="TBD" color="candy">
-                    Launch
-                  </Item>
-                  <Item color="candy">
-                    Beta funding campaign
-                  </Item>
-                </Timeline>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={{ span: 20, offset: 2, }}>
-                <Title level={3}>
-                  The demo
-                  <br />&nbsp;
-                </Title>
-                <Scoreboard></Scoreboard>
-                <br />&nbsp;
+                <Row id="home" className="text-center">
+                  <Col xs={{ span: 24, }}>
+                    <Title>
+                      <br />Welcome to <a href="/">DontSpell.net</a>!
+                    </Title>
+
+                    <Title level={4}>
+                      The online community for popular internet games
+                    </Title>
+                  </Col>
+                </Row>
+
+                <Row id="vision">
+                  <Col xs={{ span: 24, }} lg={{ span: 18, offset: 3, }} xl={{ span: 14, offset: 5, }}>
+                    <Title level={3} className="text-center">
+                      <br />The vision
+                    </Title>
+
+                    <Paragraph style={{ textIndent: '2em', textAlign: 'justify', }}>
+                      This project aims to centralize all efforts to
+                      collaborate and compete on popular online
+                      games, primarily{" "}
+                      <a href="https://skribbl.io/" target="_blank" rel="noreferrer">
+                        Skribbl.io
+                      </a>. Widely, things such
+                      as high scores, gorgeous drawings, exceptional
+                      use of word play, and hilarious gamer moments
+                      go unnoticed outside of their individual spheres
+                      of influence. DontSpell.net solves that problem
+                      by providing a place to share those with
+                      your friends, the people around you, and the world.
+                    </Paragraph>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col xs={{ span: 24, }} md={{ span: 18, offset: 3, }} lg={{ span: 14, offset: 5, }} xl={{ span: 10, offset: 7, }}>
+                    <Title level={5} className="text-center">
+                      <br />Current progress
+                    </Title>
+
+                    <Progress percent={40} status="active" />
+                    <br />&nbsp;
+                    <br />&nbsp;
+
+                    <Timeline mode={'right'} reverse={true}>
+                      <Item label="3-12-21" color="green" dot={<CheckCircleOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(28)}>
+                        Brainstorm
+                      </Item>
+                      <Item label="4-9-21" color="green" dot={<CheckCircleOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(29)}>
+                        Reserve domain
+                      </Item>
+                      <Item label="5-8-21" color="green" dot={<CheckCircleOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(75)}>
+                        Start coding
+                      </Item>
+                      <Item label="7-22-21" color="irresistible" dot={<EnvironmentOutlined style={{ fontSize: '24px' }} />} style={this.scaleTime(44)}>
+                        Initial deployment
+                      </Item>
+                      <Item dot={<LoadingOutlined style={{ fontSize: '16px' }} spin />} style={this.scaleTime(44)}>
+                        Alpha dev
+                      </Item>
+                      <Item label="TBD" color="candy">
+                        Launch
+                      </Item>
+                      <Item color="candy">
+                        Beta funding campaign
+                      </Item>
+                    </Timeline>
+                  </Col>
+                </Row>
+
+                <Row id="demo">
+                  <Col xs={{ span: 24, }}>
+                    <Title level={3} className="text-center">
+                      <br />The demo
+                    </Title>
+
+                    <Scoreboard></Scoreboard>
+                  </Col>
+                </Row>
+
+                <Row id="credits" className="text-center">
+                  <Col xs={{ span: 24, }}>
+                    <Title level={3}>
+                      <br />The credits
+                    </Title>
+
+                    <ul style={{ listStyleType: 'none', paddingInlineStart: 0, }}>
+                      <li>Kap'n Kadaver - <i>Color pallet</i></li>
+                      <li>Ninjapuppy - <i>Font selection</i></li>
+                    </ul>
+                    <br />&nbsp;
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Content>
-          <Footer>
+
+          <Footer className="text-center">
             <Row>
-              <Col xs={{ span: 20, offset: 2, }}>
+              <Col xs={{ span: 24, }}>
                 <Space size="middle">
                   <a href="https://github.com/sbarrack/dontspell" target="_blank" rel="noreferrer">
                     <GithubOutlined style={{ fontSize: '36px' }} />
                   </a>
                 </Space>
-                <br />&nbsp;
               </Col>
             </Row>
+
             <Row>
-              <Col xs={{ span: 20, offset: 2, }}>
-                <a href="/terms">
-                  Terms of Service
-                </a> &nbsp;{" "}
-                <a href="/privacy">
-                  Privacy Policy
-                </a> &nbsp;{" "}
-                <a href="mailto:dev@dontspell.net">
-                  Contact
-                </a>
+              <Col xs={{ span: 24, }}>
+                <br /><a href="/terms">Terms</a> &nbsp;{" "}
+                <a href="/privacy">Privacy</a> &nbsp;{" "}
+                <a href="mailto:dev@dontspell.net">Contact</a>
+
                 <Paragraph italic={true}>
-                  <small>&copy;2021 Stephen Barrack</small>
+                  <small>&copy;2021 DontSpell.net</small>
                 </Paragraph>
               </Col>
             </Row>
           </Footer>
         </Layout>
+
         <Modal visible={this.state.isModalVisible} footer={null} onCancel={this.hideModal} width={800}>
           {modalContent[this.state.whichModalContent]}
         </Modal>
