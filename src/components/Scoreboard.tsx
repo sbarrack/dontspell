@@ -98,6 +98,19 @@ const data = [
     },
     date: new Date('7/24/21'),
   },
+  {
+    key: '4',
+    name: {
+      tag: 'Sir Pencillus',
+      badges: [],
+    },
+    score: {
+      value: 10563,
+      isReviewed: true,
+      isValid: true,
+    },
+    date: new Date('8/17/21'),
+  },
 ];
 
 class Scoreboard extends React.Component {
